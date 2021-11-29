@@ -116,9 +116,11 @@ class ModMatrix:
     def transpose(self):
         """Returns a transposed copy of the matrix"""
         other = self.__class__(self.size, modulo=self.mod)
+
         for row in range(self.size):
             for col in range(self.size):
                 other.data[row][col] = self.data[col][row]
+
         return other
 
     def diagonal(self):
