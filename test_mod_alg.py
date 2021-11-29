@@ -7,7 +7,7 @@ def test_empty_matrix_raises_error():
         a = ModMatrix(0)
 
 
-def test_zero_filled_matrix():
+def test_init_zero_filled_matrix():
     one = ModMatrix(1)
     two = ModMatrix(2)
     three = ModMatrix(3)
@@ -22,24 +22,24 @@ def test_zero_filled_matrix():
         assert value == 0, f"Element at {pos} is not zero, {value=}"
 
 
-def test_diagonal_filled_matrix():
-    one = ModMatrix(1, diagonal=1)
-    two = ModMatrix(2, diagonal=3)
-    three = ModMatrix(3, diagonal=5)
+def test_init_identity_matrix():
+    i1 = ModMatrix(1, diagonal=1)
+    i2 = ModMatrix(2, diagonal=3)
+    i3 = ModMatrix(3, diagonal=5)
 
-    for (row, col), value in one:
+    for (row, col), value in i1:
         expected = 1 if row == col else 0
         assert value == expected, f"Element at {row, col} is not {expected}, {value=}"
 
-    for (row, col), value in two:
+    for (row, col), value in i2:
         expected = 1 if row == col else 0
         assert value == expected, f"Element at {row, col} is not {expected}, {value=}"
 
-    for (row, col), value in three:
+    for (row, col), value in i3:
         expected = 1 if row == col else 0
         assert value == expected, f"Element at {row, col} is not {expected}, {value=}"
 
-    for value in three.diagonal():
+    for value in i3.diagonal():
         assert value == 1
 
 
@@ -56,7 +56,6 @@ def test_transpositions():
     for (row, col), value in alt_rows:
         expected = (1 - row) % alt_rows.mod
         assert value == expected, f"transposed value failed at {row, col}"
-
 
 def test_mod_addition():
     a = ModMatrix(4, initial=1)

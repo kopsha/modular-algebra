@@ -128,9 +128,9 @@ class ModMatrix:
     def print(self, label=None):
         """Prints matrix to console"""
         if label:
-            print(f" ..: {label}")
+            print(f"{label} =")
         for row in self.data:
-            print("    ", row)
+            print("   ", row)
 
 
 def determinant(matrix, mod=2):
