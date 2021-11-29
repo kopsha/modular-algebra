@@ -1,12 +1,11 @@
 import pytest
-import mod_alg
-
 from mod_alg import ModMatrix
 
 
 def test_empty_matrix_raises_error():
     with pytest.raises(ValueError):
         a = ModMatrix(0)
+
 
 def test_zero_filled_matrix():
     one = ModMatrix(1)
@@ -21,6 +20,7 @@ def test_zero_filled_matrix():
 
     for pos, value in three:
         assert value == 0, f"Element at {pos} is not zero, {value=}"
+
 
 def test_diagonal_filled_matrix():
     one = ModMatrix(1, diagonal=1)
@@ -42,6 +42,7 @@ def test_diagonal_filled_matrix():
     for value in three.diagonal():
         assert value == 1
 
+
 def test_transpositions():
     alt_cols = ModMatrix(4)
 
@@ -56,8 +57,9 @@ def test_transpositions():
         expected = (1 - row) % alt_rows.mod
         assert value == expected, f"transposed value failed at {row, col}"
 
+
 def test_mod_addition():
-    a = ModMatrix(4, fill_with=1)
+    a = ModMatrix(4, initial=1)
     b = ModMatrix(4, diagonal=1)
 
     a.print("A")
@@ -70,8 +72,9 @@ def test_mod_addition():
         expected = (a[pos] + b[pos]) % a.mod
         assert value == expected, f"Addition failed at {pos=}"
 
+
 def test_mod_substraction():
-    a = ModMatrix(4, fill_with=1)
+    a = ModMatrix(4, initial=1)
     b = ModMatrix(4, diagonal=1)
 
     a.print("A")
@@ -84,10 +87,11 @@ def test_mod_substraction():
         expected = (a[pos] - b[pos]) % a.mod
         assert value == expected, f"Substraction failed at {pos=}"
 
+
 def test_mod_multiply():
-    a = ModMatrix(2, mod=100)
-    b = ModMatrix(2, mod=100)
-    expected = ModMatrix(2, mod=100)
+    a = ModMatrix(2, modulo=100)
+    b = ModMatrix(2, modulo=100)
+    expected = ModMatrix(2, modulo=100)
 
     a.data = [
         [4, 2],
